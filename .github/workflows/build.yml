@@ -28,7 +28,7 @@ jobs:
           Expand-Archive -Path ${{ github.workspace }}/vector-drivers.zip -DestinationPath ${{ github.workspace }}/vector-drivers
           cd vector-drivers/Drivers
           .\setup.exe /installCert /s /i virtual -RunAsAdmin
-          $LastExitCode
+          Get-Error
           cd x64
           .\vcanconf.exe -impApplCfg -filePathAndName:"${{ github.workspace }}/tools/vector_hardware_settings.vaset"
           "${{ github.workspace }}/vxlapi" >> $env:GITHUB_PATH
@@ -37,7 +37,7 @@ jobs:
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
-          cmake -S . -B build -G Ninja -DSTANDALONE=1 -D "BOOST_ROOT=${{ steps.boost.outputs.root }}" -D "BOOST_LIBRARYDIR=${{ steps.boost.outputs.librarydir }}"
+          cmake -S . -B build -G Ninja
           cmake --build build/ --config Coverage --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
