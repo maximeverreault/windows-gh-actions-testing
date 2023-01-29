@@ -27,7 +27,7 @@ jobs:
         run: |
           Expand-Archive -Path ${{ github.workspace }}/vector-drivers.zip -DestinationPath ${{ github.workspace }}/vector-drivers
           cd vector-drivers/Drivers
-          .\setup.exe /s /installCert /i virtual -RunAsAdmin
+          .\setup.exe /s /installCert /i virtual
           Start-Sleep -s 60
           cd x64
           .\vcanconf.exe -impApplCfg -filePathAndName:"${{ github.workspace }}/tools/vector_hardware_settings.vaset"
