@@ -15,10 +15,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 11)
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC DISABLE_MCAL_FILE_VERSION_CHECK)
 
-add_subdirectory(vxlapi)
-target_link_libraries(${PROJECT_NAME} PRIVATE vxlapi)
+#add_subdirectory(vxlapi)
+#target_link_libraries(${PROJECT_NAME} PRIVATE vxlapi)
 
-add_subdirectory(stubs)
+#add_subdirectory(stubs)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -38,10 +38,10 @@ target_link_libraries(
         GTest::gtest_main
         GTest::gmock_main
         ${PROJECT_NAME}
-        vxlapi
+#        vxlapi
 )
 add_subdirectory(tests)
-add_subdirectory(mocks)
+#add_subdirectory(mocks)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report)

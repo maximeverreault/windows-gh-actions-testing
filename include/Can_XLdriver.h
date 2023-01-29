@@ -20,8 +20,8 @@
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include <Std_Types.h>
-#include <Can_GeneralTypes.h>
+//#include <Std_Types.h>
+//#include <Can_GeneralTypes.h>
 
 #include "Can_XLdriver_Types.h"
 
@@ -136,20 +136,19 @@ extern "C" {
 /*==================================================================================================
 *                                     FUNCTION PROTOTYPES
 ==================================================================================================*/
-Std_ReturnType Can_XLdriver_GetControllerErrorState(uint8 ControllerId, Can_ErrorStateType* ErrorStatePtr);
-Std_ReturnType Can_XLdriver_GetControllerRxErrorCounter(uint8 ControllerId, uint8* RxErrorCounterPtr);
-Std_ReturnType Can_XLdriver_GetControllerTxErrorCounter(uint8 ControllerId, uint8* TxErrorCounterPtr);
-Std_ReturnType Can_XLdriver_SetControllerMode(uint8 Controller, Can_ControllerStateType Transition);
-Std_ReturnType Can_XLdriver_GetControllerMode(uint8 Controller, Can_ControllerStateType* ControllerModePtr);
-Std_ReturnType Can_XLdriver_SetBaudrate(uint8 Controller, uint16 BaudRateConfigID);
-void Can_XLdriver_EnableControllerInterrupts(uint8 Controller);
-void Can_XLdriver_DisableControllerInterrupts(uint8 Controller);
-Std_ReturnType Can_XLdriver_CheckWakeup(uint8 Controller);
-void Can_XLdriver_Init(const Can_ConfigType* Config);
-void Can_XLdriver_GetVersionInfo(Std_VersionInfoType* versionInfo);
-void Can_XLdriver_DeInit(void);
-Std_ReturnType Can_XLdriver_Write(Can_HwHandleType Hth, const Can_PduType* PduInfo);
-
+//Std_ReturnType Can_XLdriver_GetControllerErrorState(uint8 ControllerId, Can_ErrorStateType* ErrorStatePtr);
+//Std_ReturnType Can_XLdriver_GetControllerRxErrorCounter(uint8 ControllerId, uint8* RxErrorCounterPtr);
+//Std_ReturnType Can_XLdriver_GetControllerTxErrorCounter(uint8 ControllerId, uint8* TxErrorCounterPtr);
+//Std_ReturnType Can_XLdriver_SetControllerMode(uint8 Controller, Can_ControllerStateType Transition);
+//Std_ReturnType Can_XLdriver_GetControllerMode(uint8 Controller, Can_ControllerStateType* ControllerModePtr);
+//Std_ReturnType Can_XLdriver_SetBaudrate(uint8 Controller, uint16 BaudRateConfigID);
+//void Can_XLdriver_EnableControllerInterrupts(uint8 Controller);
+//void Can_XLdriver_DisableControllerInterrupts(uint8 Controller);
+//Std_ReturnType Can_XLdriver_CheckWakeup(uint8 Controller);
+//void Can_XLdriver_Init(const Can_ConfigType* Config);
+//void Can_XLdriver_GetVersionInfo(Std_VersionInfoType* versionInfo);
+//void Can_XLdriver_DeInit(void);
+//Std_ReturnType Can_XLdriver_Write(Can_HwHandleType Hth, const Can_PduType* PduInfo);
 
 #ifdef __cplusplus
 }
