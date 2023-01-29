@@ -28,11 +28,11 @@ jobs:
           Expand-Archive -Path ${{ github.workspace }}/vector-drivers.zip -DestinationPath ${{ github.workspace }}/vector-drivers
           cd vector-drivers/Drivers
           .\setup.exe /i virtual -RunAsAdmin
+          Start-Sleep -s 30
           cd x64
           .\vcanconf.exe -impApplCfg -filePathAndName:"${{ github.workspace }}/tools/vector_hardware_settings.vaset"
           "${{ github.workspace }}/vxlapi" >> $env:GITHUB_PATH
           Get-ChildItem C:\Windows\System32\vxlapi*.dll
-          $env:GITHUB_PATH
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
