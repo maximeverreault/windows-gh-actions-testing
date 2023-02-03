@@ -1,0 +1,1 @@
+target_sources(${PROJECT_NAME}_catch2tests PUBLIC Tests.cpp)

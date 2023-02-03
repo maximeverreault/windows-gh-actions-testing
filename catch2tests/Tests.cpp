@@ -1,7 +1,7 @@
 /**
- * @file Tests
+ * @file Tests.coo
  * @author Maxime Verreault
- * @date 2023-01-24
+ * @date 2023-02-03
  * @copyright COPYRIGHT(c) KONGSBERG AUTOMOTIVE All rights reserved.
  * @brief 
  */
@@ -15,13 +15,9 @@
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "gtest/gtest.h"
-#include "gmock/gmock.h"
+#include <catch2/catch_test_macros.hpp>
 #include "header.h"
-using namespace ::testing;
 
- 
-TEST(BasicTestSuite, BasicTest)
-{
-    EXPECT_TRUE(getState());
+TEST_CASE( "BasicTestSuite", "BasicTest" ) {
+    REQUIRE( getState() == true );
 }

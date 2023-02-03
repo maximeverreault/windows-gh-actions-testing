@@ -15,15 +15,11 @@ set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 11)
 
 target_compile_definitions(${PROJECT_NAME} PUBLIC DISABLE_MCAL_FILE_VERSION_CHECK)
 
-#add_subdirectory(vxlapi)
-#target_link_libraries(${PROJECT_NAME} PRIVATE vxlapi)
-
-#add_subdirectory(stubs)
 
 include(FetchContent)
 FetchContent_Declare(
         googletest
-        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+        URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
@@ -38,10 +34,19 @@ target_link_libraries(
         GTest::gtest_main
         GTest::gmock_main
         ${PROJECT_NAME}
-#        vxlapi
 )
 add_subdirectory(tests)
-#add_subdirectory(mocks)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report)
+
+find_package(Catch2 3 REQUIRED)
+
+add_executable(${PROJECT_NAME}_catch2tests)
+set_target_properties(${PROJECT_NAME}_catch2tests PROPERTIES CXX_STANDARD 20)
+target_link_libraries(${PROJECT_NAME}_catch2tests PRIVATE Catch2::Catch2WithMain ${PROJECT_NAME})
+add_subdirectory(catch2tests)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(${PROJECT_NAME}_catch2tests)
