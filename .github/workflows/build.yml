@@ -18,8 +18,8 @@ jobs:
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
-          cmake -S . -B build -G Ninja
-          cmake --build build/ -DCMAKE_BUILD_TYPE=Debug --target ${{ github.event.repository.name }}_Tests
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+          cmake --build build/ --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
           cd ${{ github.workspace }}/build
