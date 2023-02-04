@@ -41,10 +41,12 @@ jobs:
         uses: microsoft/setup-msbuild@v1
         with:
           msbuild-architecture: x64
+      - name: Enable Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1.12.0
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja
           cmake --build build/ --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
