@@ -39,14 +39,3 @@ add_subdirectory(tests)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report)
-
-find_package(Catch2 3 REQUIRED)
-
-add_executable(${PROJECT_NAME}_catch2tests)
-set_target_properties(${PROJECT_NAME}_catch2tests PROPERTIES CXX_STANDARD 20)
-target_link_libraries(${PROJECT_NAME}_catch2tests PRIVATE Catch2::Catch2WithMain ${PROJECT_NAME})
-add_subdirectory(catch2tests)
-
-include(CTest)
-include(Catch)
-catch_discover_tests(${PROJECT_NAME}_catch2tests)

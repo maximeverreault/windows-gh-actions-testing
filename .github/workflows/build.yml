@@ -13,47 +13,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Upgrade MinGW
-        run: |
-          choco upgrade mingw
-      - name: Install Catch2
-        run: |
-          git clone https://github.com/catchorg/Catch2.git
-          cd Catch2
-          cmake -B build -S . -DBUILD_TESTING=OFF -G Ninja
-          cmake --build build/ --target install
-          "C:/Program Files (x86)/Catch2" >> $env:GITHUB_PATH
+      - name: Install dependencies
+        run: choco install ninja cmake
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
           cmake -S . -B build -G Ninja
-          cmake --build build/ --config Debug --target ${{ github.event.repository.name }}_Tests
-      - name: Run tests
-        run: |
-          cd ${{ github.workspace }}/build
-          ctest --output-on-failure
-  catch2:
-    name: Build and Run with Catch2
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Upgrade MinGW
-        run: |
-          choco upgrade mingw
-      - name: Install Catch2
-        run: |
-          git clone https://github.com/catchorg/Catch2.git
-          cd Catch2
-          cmake -B build -S . -DBUILD_TESTING=OFF -G Ninja
-          cmake --build build/ --target install
-          "C:/Program Files (x86)/Catch2" >> $env:GITHUB_PATH
-      - name: Run build
-        run: |
-          New-Item -ItemType directory -Path build
-          cmake -S . -B build -G Ninja
-          cmake --build build/ --config Debug --target ${{ github.event.repository.name }}_catch2tests
+          cmake --build build/ -DCMAKE_BUILD_TYPE=Debug --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
           cd ${{ github.workspace }}/build
