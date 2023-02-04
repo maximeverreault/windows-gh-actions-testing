@@ -19,6 +19,8 @@ jobs:
         uses: egor-tensin/setup-mingw@v2
         with:
           platform: x64
+      - name: Install dependencies
+        run: choco install ninja cmake
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
