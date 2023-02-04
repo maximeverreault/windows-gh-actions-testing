@@ -32,7 +32,6 @@ set_target_properties(${PROJECT_NAME}_Tests PROPERTIES CXX_STANDARD 20)
 target_link_libraries(
         ${PROJECT_NAME}_Tests
         GTest::gtest_main
-        GTest::gmock_main
         ${PROJECT_NAME}
 )
 add_subdirectory(tests)
