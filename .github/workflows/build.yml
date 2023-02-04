@@ -6,8 +6,8 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  gtest:
-    name: Build and Run with GoogleTest
+  ninja_build:
+    name: Build and Run with Ninja
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -23,6 +23,28 @@ jobs:
         run: |
           New-Item -ItemType directory -Path build
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+          cmake --build build/ --target ${{ github.event.repository.name }}_Tests
+      - name: Run tests
+        run: |
+          cd ${{ github.workspace }}/build
+          ctest --output-on-failure
+  msvc_build:
+    name: Build and Run with MSVC
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Install dependencies
+        run: choco install ninja cmake
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1
+        with:
+          msbuild-architecture: x64
+      - name: Run build
+        run: |
+          New-Item -ItemType directory -Path build
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
           cmake --build build/ --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
