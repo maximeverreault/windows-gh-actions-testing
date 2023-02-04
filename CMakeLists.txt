@@ -42,4 +42,6 @@ target_link_libraries(
 add_subdirectory(tests)
 
 include(GoogleTest)
-gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report DISCOVERY_MODE PRE_TEST)
+#gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report DISCOVERY_MODE PRE_TEST)
+gtest_add_tests(TARGET ${PROJECT_NAME}_Tests
+               )
