@@ -6,6 +6,8 @@ endif()
 
 project(windows-gh-actions-testing LANGUAGES C CXX)
 
+include(GNUInstallDirs)
+
 add_library(${PROJECT_NAME} main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)

@@ -16,7 +16,6 @@
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
 #include "gtest/gtest.h"
-#include "gmock/gmock.h"
 #include "header.h"
 using namespace ::testing;
 
