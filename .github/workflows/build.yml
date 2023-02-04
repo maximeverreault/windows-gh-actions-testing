@@ -16,7 +16,7 @@ jobs:
       - name: Clean up PATH
         uses: egor-tensin/cleanup-path@v3
         with:
-          dirs: C:/ProgramData/chocolatey/bin
+          dirs: "C:/ProgramData/chocolatey/bin;C:/Program Files/CMake/bin"
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
         with:
