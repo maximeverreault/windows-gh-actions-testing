@@ -15,10 +15,12 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Enable Developer Command Prompt
         uses: ilammy/msvc-dev-cmd@v1.12.0
+      - name: Install dependencies
+        run: choco install mingw ninja cmake
       - name: Run build
         run: |
           New-Item -ItemType directory -Path build
-          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja -DCMAKE_CXX_COMPILER=c++
           cmake --build build/ --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
         run: |
