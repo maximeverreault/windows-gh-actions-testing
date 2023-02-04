@@ -24,11 +24,12 @@ jobs:
       - name: Install dependencies
         run: choco install ninja cmake
       - name: Run build
+        working-directory: build
         run: |
-          New-Item -ItemType directory -Path build
+          ls ../
           cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -G Ninja -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=c++
           cmake --build build/ --target ${{ github.event.repository.name }}_Tests
       - name: Run tests
-        run: |
-          cd ${{ github.workspace }}/build
+        working-directory: build
+        run:
           ctest --output-on-failure
