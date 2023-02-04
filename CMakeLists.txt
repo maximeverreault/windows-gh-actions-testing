@@ -6,9 +6,12 @@ endif()
 
 project(windows-gh-actions-testing LANGUAGES C CXX)
 
-include(GNUInstallDirs)
-
 add_library(${PROJECT_NAME} main.cpp)
+
+include(GNUInstallDirs)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 
