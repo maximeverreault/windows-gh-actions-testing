@@ -15,6 +15,8 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Clean up PATH
         uses: egor-tensin/cleanup-path@v3
+        with:
+          dirs: C:/ProgramData/chocolatey/bin
       - name: Set up MinGW
         uses: egor-tensin/setup-mingw@v2
         with:
