@@ -43,4 +43,3 @@ add_subdirectory(tests)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}_Tests XML_OUTPUT_DIR report)
-               )
